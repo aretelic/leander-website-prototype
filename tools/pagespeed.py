@@ -22,7 +22,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = "https://aretelic.github.io/leander-website-prototype/"
+BASE = "https://preview.leanderswim.com/"
 API = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
 CATEGORIES = ["performance", "accessibility", "best-practices", "seo"]
 

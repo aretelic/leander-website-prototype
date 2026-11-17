@@ -21,7 +21,7 @@ CREST_SRC = "assets/leander-crest.png"
 import hashlib
 VERSION = hashlib.md5((ROOT / "assets/site.css").read_bytes() + (ROOT / "assets/site.js").read_bytes()).hexdigest()[:8]
 RTS_URL = "https://aretelic.github.io/race-the-standards/"
-SITE_URL = "https://aretelic.github.io/leander-website-prototype/"  # used for social sharing tags
+SITE_URL = "https://preview.leanderswim.com/"  # used for social sharing tags
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from photos import PHOTOS, pick_photo  # noqa: E402
 from partials import home_body, timeline_html, style_options_body  # noqa: E402
