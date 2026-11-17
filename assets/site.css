@@ -61,7 +61,7 @@ strong { font-weight: 700; color: inherit; }
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line-2); backdrop-filter: saturate(1.2) blur(6px); }
 .site-header .wrap { max-width: 1320px; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--navy); flex: none; }
-.brand svg { width: 50px; height: 50px; }
+.brand .crest { width: 50px; height: 50px; object-fit: contain; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-name { font-weight: 700; font-size: 22px; }
 .brand-sub { font-size: 13px; font-weight: 500; opacity: .85; }
@@ -423,7 +423,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
   .footer-grid { grid-template-columns: minmax(0, 1fr); }
   .table-hint, .tl-scroll-hint { display: block; }
   .embed-frame iframe { height: 1300px; }
-  .brand svg { width: 44px; height: 44px; }
+  .brand .crest { width: 44px; height: 44px; }
   .brand-name { font-size: 20px; }
   .site-header .wrap { min-height: 68px; }
   .header-actions .btn { white-space: nowrap; min-height: 42px; padding: 9px 16px; font-size: 15px; }

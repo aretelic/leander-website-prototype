@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content"
 SITE_NAME = "Leander Swimming Club"
+CREST_SRC = "assets/leander-crest.png"
 import hashlib
 VERSION = hashlib.md5((ROOT / "assets/site.css").read_bytes() + (ROOT / "assets/site.js").read_bytes()).hexdigest()[:8]
 RTS_URL = "https://aretelic.github.io/race-the-standards/"
@@ -802,10 +803,9 @@ def section_of(url):
 
 
 def crest_svg(size=50):
-    return (f'<svg width="{size}" height="{size}" viewBox="0 0 56 56" role="img" aria-label="Leander crest (placeholder)">'
-            '<circle cx="28" cy="28" r="26" fill="#06303F" stroke="#FDD32A" stroke-width="4"/>'
-            '<circle cx="28" cy="28" r="15" fill="#FDD32A"/>'
-            '<path d="M28 18c4 5 4 8 2 11 3-1 4-3 4-5 2 4 1 9-6 11-7-2-8-7-5-12 0 3 2 4 3 4-2-3 0-6 2-9z" fill="#06303F"/></svg>')
+    """The Leander crest (from the club's current site)."""
+    return (f'<img class="crest" src="{CREST_SRC}" width="{size}" height="{size}" alt="">')
+
 
 
 CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
@@ -826,6 +826,8 @@ def nav_link(ctx, label, target, cls=""):
 
 
 def header_html(ctx):
+    global CREST_SRC
+    CREST_SRC = ctx.root + "assets/leander-crest.png"
     sec_label, _, _ = section_of(ctx.url)
     items = []
     for n, (label, base, kids) in enumerate(NAV):
@@ -881,6 +883,8 @@ def subnav_html(ctx):
 
 
 def footer_html(ctx):
+    global CREST_SRC
+    CREST_SRC = ctx.root + "assets/leander-crest.png"
     def col(title, links):
         lis = "".join(f"<li>{nav_link(ctx, l, t)}</li>" for l, t in links)
         return f'<div><h2>{esc(title)}</h2><ul>{lis}</ul></div>'
@@ -917,7 +921,7 @@ def page_shell(ctx, title, desc, body, body_class=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{ctx.root}assets/site.css?v={VERSION}">
-<link rel="icon" href="{ctx.root}assets/crest.svg" type="image/svg+xml">
+<link rel="icon" href="{ctx.root}assets/favicon.png" type="image/png">
 </head>
 <body class="{body_class}">
 {header_html(ctx)}
