@@ -45,8 +45,23 @@ Some pages and parts of pages are built in code rather than Markdown:
 | Lane-by-lane pathway timeline (Squads › The pathway) | `tools/partials.py` → `ITEMS` |
 | Navigation and mega menu (`NAV`, `MEGA`), footer and each page's top buttons (`HERO_CTA`) | `tools/build.py` |
 | Placeholder photos and their keywords | `tools/photos.py` |
+| Social sharing image (1200×630) | `tools/share-card/card.html`, rendered to `assets/share-card.jpg` (see below) |
 | Look and feel (colours, type, spacing) | `assets/site.css` (tokens at the top) |
 | Mobile menu, timeline, forms, waterline animation | `assets/site.js` |
+
+## Sharing card
+
+Every page has Open Graph and Twitter/X tags, so links shared on WhatsApp, Facebook, LinkedIn, Slack and X show a preview with the page title, its description and `assets/share-card.jpg`. To change the image, edit `tools/share-card/card.html` and re-render it:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=6000 --screenshot="$PWD/assets/share-card.png" "file://$PWD/tools/share-card/card.html"
+```
+
+Then convert it to JPEG (or keep the PNG and update the filename in `tools/build.py`). Apps cache previews, so a link already shared may show the old card for a while.
+
+## Checking speed and accessibility
+
+`python3 tools/pagespeed.py` runs Google PageSpeed Insights (Lighthouse) on every published page, mobile and desktop, and writes `reports/pagespeed.md`. Run it after publishing. An optional `PSI_KEY` environment variable raises Google's rate limit.
 
 ## Design tokens
 

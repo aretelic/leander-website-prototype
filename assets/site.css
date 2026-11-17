@@ -352,17 +352,20 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 /* Pathway timeline */
 .tl-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px 48px; align-items: end; margin-bottom: 24px; }
 .tl-scroll { overflow-x: auto; border-radius: var(--rb); border: 1px solid var(--line); background: var(--white); -webkit-overflow-scrolling: touch; }
-.tl-grid { min-width: 1080px; display: grid; grid-template-columns: 170px repeat(14, minmax(0, 1fr)); grid-template-rows: 64px repeat(9, 58px); column-gap: 4px; row-gap: 6px; padding: 0 12px 12px 0; position: relative; }
-.tl-lane-bg { grid-column: 1 / -1; margin: 0 -12px 0 0; border-top: 1px solid var(--line); }
+.tl-grid { min-width: 1040px; display: grid; grid-template-columns: 158px repeat(13, minmax(0, 1fr)) minmax(0, 1.5fr); grid-template-rows: 60px repeat(10, 60px); column-gap: 4px; row-gap: 0; padding: 0 12px 0 0; position: relative; }
+.tl-lane-bg { grid-column: 1 / -1; margin-right: -12px; border-top: 1px solid var(--line); }
 .tl-lane-label { grid-column: 1; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 0 12px 0 18px; position: relative; }
 .tl-lane-label .n { font-weight: 700; font-size: 18px; color: var(--navy); line-height: 1.1; }
 .tl-lane-label .d { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
 .tl-age { grid-row: 1; display: flex; align-items: center; justify-content: center; }
 .tl-age span { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: var(--yellow); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
 .tl-age-label { grid-column: 1; grid-row: 1; display: flex; align-items: center; padding-left: 18px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; color: var(--muted); text-transform: uppercase; }
-.tl-chip { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 1px; padding: 6px 12px; border-radius: var(--rs); min-width: 0; overflow: hidden; font: inherit; text-align: left; cursor: pointer; border: 2px solid transparent; transition: transform .12s, box-shadow .12s; }
+.tl-chip { position: relative; display: flex; flex-direction: column; justify-content: center; gap: 1px; margin: 6px 0; padding: 5px 10px; border-radius: var(--rs); min-width: 0; overflow: hidden; font: inherit; text-align: left; cursor: pointer; border: 2px solid transparent; transition: transform .12s, box-shadow .12s; }
 .tl-chip:hover { transform: translateY(-1px); }
-.tl-chip .t { font-weight: 700; font-size: 14.5px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-chip .t { font-weight: 700; font-size: 14px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-chip.narrow { padding: 4px 7px; }
+.tl-chip.narrow .t { white-space: normal; font-size: 13px; overflow-wrap: normal; hyphens: manual; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.tl-chip.narrow .s { display: none; }
 .tl-chip .s { font-size: 12px; line-height: 1.2; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tl-chip[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--white), 0 0 0 6px #0E7CC2; z-index: 2; }
 .tone-learn { background: var(--yellow); color: var(--navy); }

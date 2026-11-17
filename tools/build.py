@@ -21,6 +21,7 @@ CREST_SRC = "assets/leander-crest.png"
 import hashlib
 VERSION = hashlib.md5((ROOT / "assets/site.css").read_bytes() + (ROOT / "assets/site.js").read_bytes()).hexdigest()[:8]
 RTS_URL = "https://aretelic.github.io/race-the-standards/"
+SITE_URL = "https://aretelic.github.io/leander-website-prototype/"  # used for social sharing tags
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from photos import PHOTOS, pick_photo  # noqa: E402
 from partials import home_body, timeline_html, style_options_body  # noqa: E402
@@ -969,6 +970,9 @@ def footer_html(ctx):
 
 def page_shell(ctx, title, desc, body, body_class=""):
     full_title = title if SITE_NAME in title or "Leander" in title else f"{title} | {SITE_NAME}"
+    og_title = re.sub(r" \| Leander.*$", "", full_title)
+    og_desc = desc or "Learn to swim, train and race, or swim for life at Leander Swimming Club in South London."
+    page_url = SITE_URL + (ctx.url.strip("/") + "/" if ctx.url != "/" else "")
     return f"""<!doctype html>
 <html lang="en-GB">
 <head>
@@ -977,6 +981,21 @@ def page_shell(ctx, title, desc, body, body_class=""):
 <meta name="robots" content="noindex, nofollow">
 <title>{esc(full_title)} (prototype)</title>
 <meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{page_url}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leander Swimming Club">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="{esc(og_title)}">
+<meta property="og:description" content="{esc(og_desc)}">
+<meta property="og:url" content="{page_url}">
+<meta property="og:image" content="{SITE_URL}assets/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Leander Swimming Club: Swim your best, among friends. A Leander swimmer in club kit at the London Aquatics Centre.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE_URL}assets/share-card.jpg">
+<meta name="theme-color" content="#06303F">
+<link rel="apple-touch-icon" href="{ctx.root}assets/leander-crest.png">
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

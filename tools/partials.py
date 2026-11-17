@@ -8,10 +8,10 @@ from html import escape as esc
 LANES = [
     ("learn", "Learn", "The Academy, ages 5–10", [2, 3], "#FFFBEA"),
     ("compete", "Squads", "Train and race", [4, 5], "#F6F9FA"),
-    ("race", "Compete", "The competition ladder", [6], "#FFFFFF"),
-    ("talent", "Talent", "Swim England, by selection", [7], "#FFFBEA"),
-    ("life", "Swim for Life", "Your way, any age", [8], "#F6F9FA"),
-    ("beyond", "Beyond", "Teach, officiate, lead", [9, 10], "#FFFFFF"),
+    ("race", "Compete", "The race ladder", [6], "#FFFFFF"),
+    ("talent", "Talent", "Swim England, by selection", [7, 8], "#FFFBEA"),
+    ("life", "Swim for Life", "Your way, any age", [9], "#F6F9FA"),
+    ("beyond", "Beyond", "Teach, officiate, lead", [10, 11], "#FFFFFF"),
 ]
 
 ITEMS = [
@@ -49,23 +49,23 @@ ITEMS = [
          detail="Swim England's national championships. Leander swimmers reached finals and won medals here in 2025/26."),
     dict(id="gb", lane="race", row=6, a=17, b=18, title="British / GB", sub="Our fastest", ages="A guide, not a rule", href="/news/2025-26-season-round-up",
          detail="British Championships, GB Trials and GB Summer Championships. In 2025/26, two Leander swimmers qualified for GB Trials and one won a medal at GB Summer Champs."),
-    dict(id="cdc", lane="talent", row=7, a=11, b=12, title="County camp", sub="Selected · ages TBC", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
+    dict(id="cdc", lane="talent", row=7, a=11, b=12, title="County camp", sub="By selection", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
          detail="County Development camps, run by Surrey, are the first step on Swim England's Talent pathway. Swimmers are selected on their results and World Aquatics points; you can't apply.\nTime and points guidance still to be confirmed with the Head Coach."),
-    dict(id="rdc", lane="talent", row=7, a=13, b=14, title="Regional camp", sub="Selected · ages TBC", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
+    dict(id="rdc", lane="talent", row=7, a=13, b=14, title="Regional camp", sub="By selection", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
          detail="Regional Development camps, run by Swim England London, for promising swimmers from across the region. Places are by selection only."),
-    dict(id="nag", lane="talent", row=7, a=15, b=15, title="National camps", sub="Selected", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
+    dict(id="nag", lane="talent", row=7, a=15, b=16, title="National camp", sub="By selection", ages="Ages to confirm", tbc=True, href="#swim-england-talent-pathway",
          detail="National Age Group development camps, run by Swim England's national talent team, for the fastest swimmers in each age group in England. Places are by selection only."),
-    dict(id="dise", lane="talent", row=7, a=16, b=18, title="DiSE", sub="Ages 16–18", ages="Ages 16–18", tbc=True, href="#swim-england-talent-pathway",
+    dict(id="dise", lane="talent", row=8, a=16, b=18, title="DiSE", sub="Ages 16–18", ages="Ages 16–18", tbc=True, href="#swim-england-talent-pathway",
          detail="The Diploma in Sporting Excellence is a two-year Swim England programme for talented 16 to 18 year olds, combining full-time education with high-level swimming support.\nHow swimmers qualify is still to be confirmed."),
-    dict(id="diamond", lane="life", row=8, a=12, b=17, title="Diamond", sub="Teens · train without the race load", ages="Teenagers (ages to confirm)", tbc=True, href="/swim-for-life/diamond",
+    dict(id="diamond", lane="life", row=9, a=12, b=17, title="Diamond", sub="Teens · train without the race load", ages="Teenagers (ages to confirm)", tbc=True, href="/swim-for-life/diamond",
          detail="For teenagers who want to keep fit and stay with their friends without the competition load, and for squad swimmers easing off for GCSEs or A levels. One session a week minimum, three recommended. Swimmers can move back to a competitive squad later."),
-    dict(id="masters", lane="life", row=8, a=18, b=18, title="Masters", sub="18+", ages="Adults 18+", href="/swim-for-life/masters",
+    dict(id="masters", lane="life", row=9, a=18, b=18, title="Masters", sub="18+", ages="Adults 18+", href="/swim-for-life/masters",
          detail="For adults: fitness swimmers, triathletes and anyone coming back to the water. Two coached sessions a week, with coaches who include triathlon specialists."),
-    dict(id="officiate", lane="beyond", row=9, a=15, b=17, title="Teach and officiate", sub="Judge 1 from 15", ages="From 15 (officiating)", tbc=True, href="/club/beyond-the-pool",
+    dict(id="officiate", lane="beyond", row=10, a=15, b=17, title="Teach and officiate", sub="Judge 1 from 15", ages="From 15 (officiating)", tbc=True, href="/club/beyond-the-pool",
          detail="Squad swimmers can train as paid Academy teachers and gain officiating experience at our own Academy galas. The Judge 1 officials course is open from age 15.\nTeaching age, qualification and pay still to be confirmed."),
-    dict(id="dofe", lane="beyond", row=10, a=15, b=17, title="DofE volunteering", sub="Silver and Gold", ages="Teenagers", tbc=True, href="/club/beyond-the-pool",
+    dict(id="dofe", lane="beyond", row=11, a=15, b=17, title="DofE volunteering", sub="Silver and Gold", ages="Teenagers", tbc=True, href="/club/beyond-the-pool",
          detail="Students can arrange Duke of Edinburgh's Award volunteering by approaching the club. It can count towards the volunteering section; the level is confirmed by the student's DofE leader."),
-    dict(id="uni", lane="beyond", row=9, a=18, b=18, title="University", sub="UK and US", ages="18+", href="/squads/university-and-scholarships",
+    dict(id="uni", lane="beyond", row=10, a=18, b=18, title="University", sub="UK and US", ages="18+", href="/squads/university-and-scholarships",
          detail="Our squad swimmers regularly win places on university swimming programmes in the UK and the US. Families research each programme and contact coaches directly, and we help."),
 ]
 
@@ -85,7 +85,8 @@ def timeline_html(ctx, picked="bronze"):
     for it in ITEMS:
         on = "true" if it["id"] == picked else "false"
         label = f'{it["title"]}, {lane_names[it["lane"]]}, {it["ages"]}'
-        cells.append(f'<button type="button" class="tl-chip tone-{it["lane"]}" data-id="{it["id"]}" aria-pressed="{on}" aria-controls="tl-detail" aria-label="{esc(label)}" '
+        narrow = " narrow" if it["a"] == it["b"] and it["b"] < 18 else ""
+        cells.append(f'<button type="button" class="tl-chip tone-{it["lane"]}{narrow}" data-id="{it["id"]}" aria-pressed="{on}" aria-controls="tl-detail" aria-label="{esc(label)}" '
                      f'style="grid-column:{it["a"] - 3} / {it["b"] - 2};grid-row:{it["row"]}"><span class="t">{esc(it["title"])}</span><span class="s">{esc(it["sub"])}</span></button>')
     sel = next(i for i in ITEMS if i["id"] == picked)
     data = {"lanes": lane_names, "items": [dict(i, href=ctx.href(i["href"]), linkText=f'More about {i["title"]}') for i in ITEMS]}
