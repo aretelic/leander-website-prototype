@@ -40,6 +40,8 @@ h2 { font-weight: 700; font-size: clamp(28px, 3.4vw, 42px); letter-spacing: -.6p
 h3 { font-weight: 700; font-size: clamp(21px, 2vw, 24px); letter-spacing: -.2px; }
 h4 { font-weight: 700; font-size: 19px; }
 p { margin: 0 0 14px; }
+p, li, td, dd, figcaption { overflow-wrap: break-word; }
+.prose a, td a { overflow-wrap: anywhere; }
 p:last-child { margin-bottom: 0; }
 strong { font-weight: 700; color: inherit; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -150,10 +152,10 @@ mark.tbc.bare::before { margin-right: 0; }
 
 /* Home hero */
 .home-hero .wrap { padding-top: 24px; padding-bottom: 72px; }
-.home-hero-photo { position: relative; height: clamp(300px, 36vw, 470px); border-radius: 30px; overflow: hidden; background: var(--sky-2); }
+.home-hero-photo { position: relative; height: clamp(280px, 30vw, 400px); border-radius: 30px; overflow: hidden; background: var(--sky-2); }
 .home-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 .home-hero-photo canvas { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 90px; pointer-events: none; }
-.home-hero-card { position: relative; margin-top: -210px; margin-left: 48px; max-width: 640px; background: var(--white); border-radius: 26px; padding: 40px; display: flex; flex-direction: column; gap: 18px; box-shadow: var(--shadow); }
+.home-hero-card { position: relative; margin-top: -200px; margin-left: 48px; max-width: 640px; background: var(--white); border-radius: 26px; padding: 40px; display: flex; flex-direction: column; gap: 18px; box-shadow: var(--shadow); }
 .home-hero-card h1 { font-size: clamp(42px, 6vw, 76px); }
 .home-hero .photo-label { top: 18px; right: 18px; left: auto; }
 
