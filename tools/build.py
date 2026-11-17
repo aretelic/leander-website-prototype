@@ -964,7 +964,7 @@ def footer_html(ctx):
         'We follow Wavepower, Swim England\'s safeguarding policy.</span>'
         f'<span><a class="hl" href="mailto:welfare@leanderswim.com">welfare@leanderswim.com</a> <mark class="tbc">confirm welfare address</mark> · <a href="{esc(ctx.href("/club/safeguarding-and-policies"))}">Safeguarding</a></span></div>'
         '<div class="footer-bottom"><span>Leander Swimming Club · website prototype for committee feedback, November 2026</span>'
-        '<span>Placeholder photos from Unsplash (see CREDITS.md in the repository)</span></div>'
+        '<span>Photos marked "Placeholder photo" are stand-ins until the club has its own.</span></div>'
         '</div></footer>')
 
 
