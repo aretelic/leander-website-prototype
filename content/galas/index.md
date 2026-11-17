@@ -3,7 +3,7 @@ title: Leander galas 2027
 url: /galas
 template: utility
 owner: Gala lead {{TBC: name}}, with the Head of Academy and the Head Coach
-seo_description: Leander is hosting three galas in 2027: two friendly Academy galas for ages 5–10 and a Level 3 open meet for developing squad swimmers.
+seo_description: Leander is hosting three galas in 2027: two friendly Academy galas for ages 5–10 and a Level 3 meet for developing squad swimmers.
 cta_primary: New to galas? Read How galas work → /galas/how-galas-work
 ---
 
@@ -11,7 +11,7 @@ cta_primary: New to galas? Read How galas work → /galas/how-galas-work
 
 ## Three galas, every step explained
 
-In 2027 Leander is hosting three galas of our own: two Academy galas for our youngest swimmers, and a Level 3 open meet for squad swimmers from Leander and visiting clubs. Each one is a step on the ladder, from a first race to times that count for rankings.
+In 2027 Leander is hosting three galas of our own: two Academy galas for our youngest swimmers, and a Level 3 meet for squad swimmers from Leander and visiting clubs. Each one is a step on the ladder, from a first race to times that count for rankings.
 
 [PHOTO: wide shot of the pool from the stands during a gala, swimmers not identifiable]
 
@@ -19,29 +19,29 @@ New to galas? Start with **[How galas work]**.
 
 ---
 
-## The Tadpole Trophy
+## The Winter Academy Gala
 
-**Spring Academy gala**
+**Winter Academy gala**
 
 A friendly first race for Leander Academy swimmers (ages 5–10). Something for every finisher.
 
 | | |
 |---|---|
-| **Date** | {{TBC: date, spring 2027}} |
+| **Date** | {{TBC: date, winter 2026/27}} |
 | **Venue** | {{TBC: venue}} |
 | **Who it's for** | Academy swimmers {{TBC: which stages}} |
 
 [PHOTO: young swimmers in Leander caps at the poolside, from behind]
 
-**[Find out more →]** /galas/tadpole-trophy
+**[Find out more →]** /galas/winter-academy-gala
 
 ---
 
-## The Seahorse Sprint
+## The Summer Academy Gala
 
 **Summer Academy gala**
 
-Our second Academy gala of the year, for first-timers and for swimmers who raced in spring.
+Our second Academy gala of the year, for first-timers and for swimmers who raced in the winter.
 
 | | |
 |---|---|
@@ -51,15 +51,15 @@ Our second Academy gala of the year, for first-timers and for swimmers who raced
 
 [PHOTO: young swimmers kicking with boards, from above, faces not visible]
 
-**[Find out more →]** /galas/seahorse-sprint
+**[Find out more →]** /galas/summer-academy-gala
 
 ---
 
-## The Mercury Open
+## Leander Spring Invitational
 
-**Swim England Level 3 open meet**
+**Swim England Level 3 meet**
 
-A licensed open meet for developing swimmers, with upper-limit times so everyone races swimmers at a similar level. Open to Leander and visiting clubs.
+A licensed meet for developing swimmers, with upper-limit times so everyone races swimmers at a similar level. For Leander and invited clubs.
 
 | | |
 |---|---|
@@ -69,7 +69,7 @@ A licensed open meet for developing swimmers, with upper-limit times so everyone
 
 [PHOTO: swimmers diving from the blocks, from behind]
 
-**[Find out more →]** /galas/mercury-open
+**[Find out more →]** /galas/spring-invitational
 
 ---
 

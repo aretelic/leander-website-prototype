@@ -53,9 +53,9 @@ NAV = [
     ("Galas", "/galas", [
         ("Leander galas 2027", "/galas"),
         ("How galas work", "/galas/how-galas-work"),
-        ("The Tadpole Trophy", "/galas/tadpole-trophy"),
-        ("The Seahorse Sprint", "/galas/seahorse-sprint"),
-        ("The Mercury Open", "/galas/mercury-open"),
+        ("Winter Academy Gala", "/galas/winter-academy-gala"),
+        ("Leander Spring Invitational", "/galas/spring-invitational"),
+        ("Summer Academy Gala", "/galas/summer-academy-gala"),
         ("Gala calendar", "TU:TeamUnify – calendar"),
     ]),
     ("Club", "/club", [
@@ -106,8 +106,8 @@ LINKS = {
     "see leander galas 2027 →": "/galas",
     "see leander galas 2027": "/galas",
     "leander galas 2027": "/galas",
-    "the seahorse sprint": "/galas/seahorse-sprint",
-    "the tadpole trophy": "/galas/tadpole-trophy",
+    "the summer academy gala": "/galas/summer-academy-gala",
+    "the winter academy gala": "/galas/winter-academy-gala",
     "the leander pathway": "/squads/pathway",
     "photography policy": "TU:Photography Policy",
     "try your first masters session": "/join-us#adult",
@@ -456,7 +456,27 @@ def strip_md(s):
 # --------------------------------------------------------------------------
 # Block renderers
 # --------------------------------------------------------------------------
+CLUB_PHOTOS = {
+    # The club's own photos. Check consent with the swimmer and family before the site goes live.
+    "regionals-back": dict(base="assets/media/regionals-back", alt="A Leander squad swimmer in club kit and cap, seen from behind under the lights of the London Aquatics Centre",
+                           caption="A Leander swimmer at the London Regionals, London Aquatics Centre", pos="50% 62%"),
+}
+
+
+def render_club_photo(ctx, key, cls="photo", eager=False, brief=True):
+    ph = CLUB_PHOTOS[key]
+    base = ctx.root + ph["base"]
+    load = "eager" if eager else "lazy"
+    prio = ' fetchpriority="high"' if eager else ""
+    cap = f'<figcaption class="photo-brief club">{esc(ph["caption"])}</figcaption>' if brief else ""
+    return (f'<figure class="photo-fig"><div class="{cls}"><img src="{base}-1400.jpg" srcset="{base}-800.jpg 800w, {base}-1400.jpg 1400w" '
+            f'sizes="(max-width: 820px) calc(100vw - 40px), 560px" alt="{esc(ph["alt"])}" loading="{load}" decoding="async"{prio} style="object-position:{ph["pos"]}">'
+            f'<span class="photo-label">Leander photo</span></div>{cap}</figure>')
+
+
 def render_photo(ctx, desc, cls="photo", eager=False, brief=True):
+    if desc.startswith("club:"):
+        return render_club_photo(ctx, desc[5:].strip(), cls, eager, brief)
     ph = pick_photo(desc, ctx.used_photos, ctx.photo_n)
     ctx.photo_n += 1
     ctx.used_photos.add(ph["slug"])
@@ -961,7 +981,7 @@ def page_shell(ctx, title, desc, body, body_class=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
-<script>try{{var m=location.search.match(/[?&]style=([abcd])/);if(m)localStorage.setItem("lsc-style",m[1]);var v=localStorage.getItem("lsc-style");if(v&&v!=="a")document.documentElement.setAttribute("data-style",v);}}catch(e){{}}</script>
+<script>try{{var m=location.search.match(/[?&]style=([abcd])/);if(m)localStorage.setItem("lsc-style",m[1]);var v=localStorage.getItem("lsc-style");if(v&&v!=="d")document.documentElement.setAttribute("data-style",v);}}catch(e){{}}</script>
 <link rel="stylesheet" href="{ctx.root}assets/site.css?v={VERSION}">
 <link rel="icon" href="{ctx.root}assets/favicon.png" type="image/png">
 </head>

@@ -1,25 +1,17 @@
 ---
-title: The Seahorse Sprint: Leander Academy summer gala
-url: /galas/seahorse-sprint
+title: The Summer Academy Gala: Leander's summer gala for Academy swimmers
+url: /galas/summer-academy-gala
 template: gala
 owner: Head of Academy, with the Officials & volunteers lead
-seo_description: The Seahorse Sprint is Leander's summer Academy gala: a friendly race day for swimmers aged 5–10. Date, entries, what to expect and how to help.
+seo_description: The Summer Academy Gala is Leander's summer gala for Academy swimmers: a friendly race day for swimmers aged 5–10. Date, entries, what to expect and how to help.
 cta_primary: Enter on TeamUnify → [LINK: TeamUnify – gala entries]
 ---
 
-<!--
-NAME OPTIONS (fun, for Academy swimmers aged 5–10; avoid "Octopus", which is Woking's meet and a local league)
-1. The Seahorse Sprint  ← working title. Alliterative and summery; seahorses are small but determined swimmers.
-2. The Summer Splash  ← simple and seasonal; pairs with "Spring Splash" if the committee prefers one series name.
-3. The Sunfish Splash  ← bright and cheerful; works well with sunny summer artwork.
-Run the shortlist past Academy swimmers before deciding. Keep the URL stable year to year (no year in the slug).
--->
-
-# The Seahorse Sprint
+# The Summer Academy Gala
 
 ## Race, smile, repeat: the summer Academy gala
 
-Leander's summer Academy gala. A friendly gala for first-timers and for swimmers who raced at the Tadpole Trophy in spring.
+Leander's summer Academy gala. A friendly gala for first-timers and for swimmers who raced at the Winter Academy Gala.
 
 | | |
 |---|---|
@@ -135,4 +127,4 @@ We follow Swim England guidance and our [Photography policy]. Only photograph or
 - Highlights: {{TBC: short write-up and non-identifiable photos}}
 - Download your swimmer's "first gala" certificate {{TBC: confirm we will offer first-gala certificates}}
 
-**Earlier this year:** [The Tadpole Trophy], our spring Academy gala. **Ready for more?** See [How galas work] for what comes after Academy galas.
+**Earlier in the season:** [The Winter Academy Gala], earlier in the season. **Ready for more?** See [How galas work] for what comes after Academy galas.

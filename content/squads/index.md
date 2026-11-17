@@ -9,7 +9,7 @@ seo_description: Leander's competitive squads, from Sparks to Mercury: the pathw
 
 Our squads are training groups for young swimmers who want to race, from first club galas to national finals. We publish what every squad expects, so swimmers and parents always know what comes next. There are 210 swimmers in our squads, from schools all over South London.
 
-[PHOTO: race start dive from the blocks at a gala, swimmers from behind]
+[PHOTO: club:regionals-back]
 
 ## Start here
 

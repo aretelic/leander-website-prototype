@@ -113,12 +113,11 @@ def timeline_html(ctx, picked="bronze"):
 # Home page
 # --------------------------------------------------------------------------
 HERO_VIDEO = {
-    # Free Pexels licence. Swap for the club's own footage (filmed from behind or above, with consent).
-    "src": "https://videos.pexels.com/video-files/15561931/15561931-sd_960_540_30fps.mp4",
-    "src_sd": "https://videos.pexels.com/video-files/15561931/15561931-sd_640_360_30fps.mp4",
-    "poster": "https://images.pexels.com/videos/15561931/alberca-coachwork-loon-swimming-man-swimming-15561931.jpeg?auto=compress&w=1260&h=750&dpr=1",
-    "page": "https://www.pexels.com/video/drone-view-of-a-man-training-at-an-indoor-swimming-pool-15561931/",
-    "by": "Josué Rodríguez",
+    # Leander's own footage: a squad swimmer at the London Regionals, filmed from behind.
+    # Check consent with the swimmer and family before the site goes live.
+    "src": "assets/media/regionals-kit.mp4",
+    "poster": "assets/media/regionals-kit-poster.jpg",
+    "caption": "Leander at the London Regionals, London Aquatics Centre",
 }
 
 
@@ -164,7 +163,7 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
     news = [
         ("9 January 2027", "Olympian Freya Anderson to lead a Leander clinic", "Team GB swimmer Freya Anderson (Tokyo and Paris) is coming to Ernest Bevin for a clinic with our Platinum and Mercury swimmers, with an education session from Dr Emily Jevons.", "/news/freya-anderson-clinic-preview", "Read the preview"),
         ("2025/26 season", "Our season in numbers", "55 championship qualifications, 29 finals and 25 medals, from the Surrey County Championships to GB Trials, and a squad programme that grew from 118 to 143 swimmers.", "/news/2025-26-season-round-up", "Read the round-up"),
-        ("2027", "Three Leander galas", f"We're hosting two Academy galas for first-time racers and the Mercury Open, a Level 3 meet for developing swimmers. {gala_tbc}", "/galas", "See Leander galas 2027"),
+        ("2027", "Three Leander galas", f"We're hosting two Academy galas for first-time racers and the Leander Spring Invitational, a Level 3 meet for developing swimmers. {gala_tbc}", "/galas", "See Leander galas 2027"),
     ]
     news_html = "".join(f'<article class="card"><div class="card-body"><span class="news-date">{d}</span><h3>{esc(t)}</h3><p>{x}</p><p class="links-line"><a href="{h(u)}">{esc(l)}</a></p></div></article>' for d, t, x, u, l in news)
     venues_tbc = inline(ctx, "{{TBC: confirm which squad venues are still in use}}")
@@ -174,16 +173,7 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
 
     return f"""
 <section class="home-hero" aria-labelledby="page-title"><div class="wrap">
-  <div class="home-hero-photo">
-    <video id="hero-video" muted loop playsinline preload="metadata" poster="{HERO_VIDEO['poster']}" aria-label="Placeholder video: swimmers training in an indoor pool, filmed from above">
-      <source src="{HERO_VIDEO['src_sd']}" type="video/mp4" media="(max-width: 820px)">
-      <source src="{HERO_VIDEO['src']}" type="video/mp4">
-    </video>
-    <canvas id="waterline" aria-hidden="true"></canvas>
-    <span class="photo-label">Placeholder video<span class="credit"> · <a href="{HERO_VIDEO['page']}" rel="noopener">{HERO_VIDEO['by']} on Pexels</a></span></span>
-    <button type="button" class="video-toggle" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true" class="i-pause">❚❚</span><span aria-hidden="true" class="i-play">▶</span></button>
-  </div>
-  <div class="home-hero-card">
+  <div class="home-hero-text">
     <span class="eyebrow" style="text-transform:none;letter-spacing:0;font-weight:600">Leander Swimming Club · South London · since 1949</span>
     <h1 id="page-title">Swim your best, among friends</h1>
     <p class="lede">We help children become confident, fit, capable swimmers, with friendships and achievements that carry them through school and beyond. From first lessons at five to national finals, in a club that's friendly, supportive and proud of all of them.</p>
@@ -193,6 +183,13 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
     </div>
     <a class="text-cta" href="{h('/join-us#adult')}">Swimming for yourself? Try your first Masters session →</a>
   </div>
+  <figure class="home-hero-media">
+    <video id="hero-video" muted loop playsinline preload="auto" poster="{ctx.root}{HERO_VIDEO['poster']}" aria-label="A Leander swimmer in club kit, seen from behind, walking out at the London Aquatics Centre">
+      <source src="{ctx.root}{HERO_VIDEO['src']}" type="video/mp4">
+    </video>
+    <button type="button" class="video-toggle" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true" class="i-pause">❚❚</span><span aria-hidden="true" class="i-play">▶</span></button>
+    <figcaption>{HERO_VIDEO['caption']}</figcaption>
+  </figure>
 </div></section>
 
 <section class="section ways" aria-labelledby="ways-h"><div class="wrap">
@@ -262,10 +259,10 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
 # Corner and button options (for choosing a direction; not linked from the nav)
 # --------------------------------------------------------------------------
 OPTIONS = [
-    ("a", "A · Open water (current)", "Cards 20px, large panels 28px, pill buttons"),
+    ("a", "A · Open water (original)", "Cards 20px, large panels 28px, pill buttons"),
     ("b", "B · Softer", "Cards 14px, large panels 20px, pill buttons"),
     ("c", "C · Crisp", "Cards 10px, large panels 14px, rounded-rectangle buttons (10px)"),
-    ("d", "D · Lane line", "Cards and buttons 6px, tags squared off too"),
+    ("d", "D · Lane line (current default)", "Cards and buttons 6px, tags squared off too"),
 ]
 
 
@@ -291,6 +288,6 @@ def style_options_body(ctx, render_photo):
     return f"""
 <section class="hero no-photo"><div class="wrap"><div class="hero-text">
   <span class="eyebrow">Design options</span><h1 id="page-title">Corners and buttons</h1>
-  <p class="lede">Four ways to round the corners and shape the buttons, from the current soft "Open water" look to something crisper. Each link below switches the whole prototype to that option on your device, so you can click around with it. <a href="{ctx.href('/')}?style=a">Back to A</a>.</p>
+  <p class="lede">Four ways to round the corners and shape the buttons. <strong>D · Lane line</strong> is the current default. Each link below switches the whole prototype to that option on your device, so you can click around with it before saying which you prefer. <a href="{ctx.href('/')}?style=d">Back to D</a>.</p>
 </div></div></section>
 <section class="section"><div class="wrap"><div class="opt-grid">{''.join(blocks)}</div></div></section>"""

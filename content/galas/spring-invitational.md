@@ -1,25 +1,17 @@
 ---
-title: The Mercury Open: Leander's Level 3 open meet
-url: /galas/mercury-open
+title: Leander Spring Invitational: our Level 3 meet
+url: /galas/spring-invitational
 template: gala
 owner: Gala lead {{TBC: name}}, with the Head Coach and the Officials & volunteers lead
-seo_description: The Mercury Open is Leander's Swim England Level 3 open meet in SW London, for developing swimmers with upper-limit times. Entries, events and info.
-cta_primary: Enter the Mercury Open → {{TBC: entry route, e.g. TeamUnify or online entries}}
+seo_description: The Leander Spring Invitational is Leander's Swim England Level 3 meet in SW London, for developing swimmers with upper-limit times. Entries, events and info.
+cta_primary: Enter the Leander Spring Invitational → {{TBC: entry route, e.g. TeamUnify or online entries}}
 ---
 
-<!--
-NAME OPTIONS (aspirational, for a Swim England Level 3 open meet; avoid "Octopus" and "Dasher", which are Woking's)
-1. The Mercury Open  ← working title. Named after Mercury, our top squad: the meet points every swimmer towards the top of the pathway. Mercury is also the god of speed.
-2. The Leander Ladder  ← ties to the competition ladder and "Every step, explained": this meet is the next rung.
-3. The Breakthrough Open  ← for swimmers about to break through to county times; strong PB story.
-Keep the URL stable year to year (no year in the slug). Archive past editions on the same page.
--->
-
-# The Mercury Open
+# Leander Spring Invitational
 
 ## Race fast. Set PBs. Take the next step.
 
-Leander's Swim England **Level 3** open meet, for developing swimmers from Leander and visiting clubs. **Upper-limit times** keep the racing fair: if you're already faster than the limit for an event, you can't enter it, so everyone races swimmers at a similar level.
+Leander's Swim England **Level 3** meet, for developing swimmers from Leander and invited clubs. {{TBC: which clubs are invited, and how other clubs can ask for an invitation}} **Upper-limit times** keep the racing fair: if you're already faster than the limit for an event, you can't enter it, so everyone races swimmers at a similar level.
 
 **Entry status:** {{TBC: current status: opening soon / open / full / accepted entries posted / results live}}
 
@@ -33,7 +25,7 @@ Leander's Swim England **Level 3** open meet, for developing swimmers from Leand
 | **Entries close** | {{TBC: closing date}} |
 | **Fee per swim** | {{TBC: fee per swim}} |
 
-**[Enter the Mercury Open →]** {{TBC: entry link}}
+**[Enter the Leander Spring Invitational →]** {{TBC: entry link}}
 
 [PHOTO: swimmers diving in from the blocks at the start of a heat, from behind]
 

@@ -1,29 +1,21 @@
 ---
-title: The Tadpole Trophy: Leander Academy spring gala
-url: /galas/tadpole-trophy
+title: The Winter Academy Gala: Leander's winter gala for Academy swimmers
+url: /galas/winter-academy-gala
 template: gala
 owner: Head of Academy, with the Officials & volunteers lead
-seo_description: The Tadpole Trophy is Leander's spring Academy gala: a friendly first race for swimmers aged 5–10. Date, entries, what to expect and how to help.
+seo_description: The Winter Academy Gala is Leander's winter gala for Academy swimmers: a friendly first race for swimmers aged 5–10. Date, entries, what to expect and how to help.
 cta_primary: Enter on TeamUnify → [LINK: TeamUnify – gala entries]
 ---
 
-<!--
-NAME OPTIONS (fun, for Academy swimmers aged 5–10; avoid "Octopus", which is Woking's meet and a local league)
-1. The Tadpole Trophy  ← working title. Tadpoles are spring's first swimmers, just like ours. Pairs with a summer gala as a two-part series.
-2. The Spring Splash  ← simple and seasonal; could pair with a "Summer Splash" so families learn one series name.
-3. The Bevin Bubbles  ← nods to our home pool at Ernest Bevin (only if the gala is held there).
-Run the shortlist past Academy swimmers before deciding. Keep the URL stable year to year (no year in the slug).
--->
-
-# The Tadpole Trophy
+# The Winter Academy Gala
 
 ## Your swimmer's first race, made fun
 
-Leander's spring Academy gala. A friendly gala for Academy swimmers, and for many, their very first race.
+Leander's winter gala for Academy swimmers. A friendly gala for Academy swimmers, and for many, their very first race.
 
 | | |
 |---|---|
-| **Date** | {{TBC: date, spring 2027}} |
+| **Date** | {{TBC: date, winter 2026/27}} |
 | **Venue** | {{TBC: venue}} |
 | **Licence** | {{TBC: confirm whether the gala is licensed or an internal club gala}} |
 | **Who it's for** | Leander Academy swimmers {{TBC: which Academy stages can enter}} |
@@ -135,4 +127,4 @@ We follow Swim England guidance and our [Photography policy]. Only photograph or
 - Highlights: {{TBC: short write-up and non-identifiable photos}}
 - Download your swimmer's "first gala" certificate {{TBC: confirm we will offer first-gala certificates}}
 
-**Next up:** [The Seahorse Sprint], our summer Academy gala.
+**Next up:** [The Summer Academy Gala], later in the season.

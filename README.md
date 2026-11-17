@@ -13,9 +13,9 @@ A clickable prototype of Leander's new website in the **"Open water"** design di
 - Links to systems outside the prototype (TeamUnify, the kit shop, policy documents) show a short "on the live site this goes to…" message.
 - The forms (waiting list, squad trial) look real but **send nothing**.
 - **Race the Standards** is embedded from its own site: https://aretelic.github.io/race-the-standards/
-- The home page hero is a looping placeholder video (muted, pausable, and still when the device asks for reduced motion).
+- The home page hero is a looping clip of a Leander swimmer at the London Regionals (muted, pausable, and still when the device asks for reduced motion). Club media lives in `assets/media/`.
 - The real Leander crest, plus the Swim England Affiliated Club, SwimMark and Clubmark marks in the footer.
-- [`/style-options/`](https://aretelic.github.io/leander-website-prototype/style-options/) compares four corner and button styles. Adding `?style=a`, `b`, `c` or `d` to any page switches the whole prototype on that device.
+- [`/style-options/`](https://aretelic.github.io/leander-website-prototype/style-options/) compares four corner and button styles; **D · Lane line** is the default. Adding `?style=a`, `b`, `c` or `d` to any page switches the whole prototype on that device.
 - No swimmers under 18 are named anywhere. Historic and record-holding swimmers are shown as `TBC: name withheld` until consent is checked.
 
 ## How to update it

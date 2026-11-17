@@ -82,6 +82,16 @@
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { if (a.getAttribute('href').charAt(0) === '#') closeMenu(); }); });
   }
 
+  /* Style preview: make it obvious when this device is showing a non-default option */
+  var st = document.documentElement.getAttribute('data-style');
+  if (st && st !== 'd') {
+    var chip = document.createElement('div');
+    chip.className = 'style-chip';
+    var here = location.pathname;
+    chip.innerHTML = 'Previewing style option ' + st.toUpperCase() + ' <a href="?style=d">Back to D (default)</a>';
+    document.body.appendChild(chip);
+  }
+
   /* Toast for links that go to systems outside this prototype */
   var toast = document.createElement('div');
   toast.className = 'toast'; toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');

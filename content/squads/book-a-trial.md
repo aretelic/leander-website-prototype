@@ -11,7 +11,7 @@ cta_primary: Request a trial → #trial-form
 
 If your swimmer can already swim well and wants to train with a team, a trial is the place to start. Here's how it works, from the form to the coach's recommendation.
 
-[PHOTO: swimmer on the starting blocks from behind, Leander cap]
+[PHOTO: club:regionals-back]
 
 ---
 
