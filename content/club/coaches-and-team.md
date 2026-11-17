@@ -54,11 +54,6 @@ Anthony is qualified as a Level 2 teacher and a Level 2 coach. That means he can
 
 Email: {{TBC: Anthony's club email address}}
 
-### Amalia Freeland
-**Volunteer Coach**
-
-{{TBC: Amalia's family's consent and an approved bio. Facts available: DS (Down Syndrome swimming) world and European record holder, GB international, trains in Leander squads, volunteer coach.}}
-
 {{TBC: any other coaches and Academy teachers to list}}
 
 ---

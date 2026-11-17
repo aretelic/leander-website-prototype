@@ -82,10 +82,6 @@
     menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { if (a.getAttribute('href').charAt(0) === '#') closeMenu(); }); });
   }
 
-  /* Keep the current page visible in the section nav on small screens */
-  var cur = document.querySelector('.subnav a[aria-current="page"]');
-  if (cur) { var ul = cur.closest('ul'); var cr = cur.getBoundingClientRect(), ur = ul.getBoundingClientRect(); if (cr.right > ur.right || cr.left < ur.left) ul.scrollLeft += cr.left - ur.left - 40; }
-
   /* Toast for links that go to systems outside this prototype */
   var toast = document.createElement('div');
   toast.className = 'toast'; toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');
@@ -137,6 +133,19 @@
       else { link.hidden = true; }
     }
     chips.forEach(function (c) { c.addEventListener('click', function () { pick(c.getAttribute('data-id')); }); });
+  }
+
+  /* Home: background video. Plays muted; never autoplays with reduced motion; always pausable. */
+  var vid = document.getElementById('hero-video');
+  if (vid) {
+    var vbtn = document.querySelector('.video-toggle');
+    function setPaused(p) {
+      if (p) vid.pause(); else { var pr = vid.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      vbtn.setAttribute('aria-pressed', String(p));
+      vbtn.setAttribute('aria-label', p ? 'Play background video' : 'Pause background video');
+    }
+    setPaused(reduceMotion);
+    vbtn.addEventListener('click', function () { setPaused(!vid.paused); });
   }
 
   /* Home: a restrained procedural waterline across the bottom of the hero photo */

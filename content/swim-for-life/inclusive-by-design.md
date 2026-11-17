@@ -3,11 +3,9 @@ title: Inclusive by design: swimmers with a disability at Leander
 url: /swim-for-life/inclusive-by-design
 template: story
 owner: Welfare Officers, with the Head Coach and Comms
-seo_description: Swimmers with a disability, including swimmers with Down Syndrome, train within Leander's squads. Meet Amalia Freeland and find out how to start a conversation.
+seo_description: Swimmers with a disability, including swimmers with Down Syndrome, train within Leander's squads. Find out how to start a conversation.
 cta_primary: Start a conversation → /join-us (swimmers with a disability route)
 ---
-
-> DRAFT: requires Amalia's and her family's approval, plus welfare sign-off, before publishing.
 
 # Inclusive by design
 
@@ -17,39 +15,13 @@ At Leander, swimmers with a disability, including swimmers with Down Syndrome, a
 
 **[Start a conversation →]** [LINK: Join us – swimmers with a disability]
 
-[PHOTO: Amalia Freeland on poolside in Leander kit, with her and her family's consent; or, if not approved, a swimmer from behind on the blocks, Leander cap]
-
----
-
-## Amalia's story
-
-Amalia Freeland is one of the best swimmers with Down Syndrome in the world. She trains with a Leander squad, and she's also one of our volunteer coaches.
-
-**A world-class swimmer**
-
-Amalia is a Great Britain international. She holds European and World records in Down Syndrome swimming in several events {{TBC: to verify: which events, which records (European / World), and current status}}.
-
-At the last DSS European Championships (the European championships for swimmers with Down Syndrome) she was named the best female swimmer {{TBC: to verify: year, venue and exact title of the award}}.
-
-In November 2026 she represented Great Britain at the DSS World Championships {{TBC: to verify: venue, events swum, results and medals}}.
-
-{{TBC: to verify: earlier international results, e.g. GB team at the 2023 European DS Championships, and medals (including a world-record mixed relay) at the 2024 World DS Championships, as reported by Swim England and South Bank Colleges}}
-
-**A Leander squad swimmer**
-
-Amalia trains with {{TBC: which squad Amalia trains with}}, in the same sessions as her teammates. {{TBC: a short quote from Amalia about training at Leander, in her own words and approved by her and her family}}
-
-**A coach for the next generation**
-
-Amalia gives her time as a volunteer coach at the club. {{TBC: what Amalia coaches (e.g. which Academy stage or squad) and a short quote about why she does it}}
-
-[PHOTO: Amalia coaching from poolside, with her and her family's consent; younger swimmers not identifiable]
+[PHOTO: a swimmer from behind on the blocks, Leander cap]
 
 ---
 
 ## What "inclusive by design" means
 
-We don't run a separate programme. Swimmers with a disability join the squad or Academy stage that suits their swimming, and train with everyone else. That's a deliberate choice, and it's how Amalia trains.
+We don't run a separate programme. Swimmers with a disability join the squad or Academy stage that suits their swimming, and train with everyone else. That's a deliberate choice.
 
 **What that looks like**
 
@@ -67,8 +39,6 @@ We don't run a separate programme. Swimmers with a disability join the squad or 
 
 | | |
 |---|---|
-| **World and European records** | Held by Leander's Amalia Freeland in Down Syndrome swimming {{TBC: to verify number of records}} |
-| **Great Britain international** | Amalia has represented GB at European and World level |
 | **3 coaches** | with qualifications or experience in disability swimming |
 | **1 team** | Swimmers with a disability train within our squads |
 

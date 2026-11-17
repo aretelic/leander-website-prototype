@@ -2,6 +2,10 @@
 
 All photos in this prototype are **placeholders**, hotlinked from images.unsplash.com under the [Unsplash License](https://unsplash.com/license) (free to use; hotlinking is what Unsplash asks for). None are of Leander swimmers. Each image on the site is labelled "Placeholder photo" and carries a brief describing the real photo the club needs.
 
+The home page video is a placeholder too: [drone view of swimmers training in an indoor pool](https://www.pexels.com/video/drone-view-of-a-man-training-at-an-indoor-swimming-pool-15561931/) by Josué Rodríguez, free under the [Pexels License](https://www.pexels.com/license/), hotlinked from videos.pexels.com.
+
+The Leander crest and the Swim England Affiliated Club, SwimMark and Clubmark marks are taken from the club's current website (leanderswim.com). Use the official high-resolution files for the real build.
+
 Real photography needs consent and the club Photography Policy before it replaces any of these.
 
 | Photo | Photographer | Source |

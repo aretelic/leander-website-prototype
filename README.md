@@ -13,6 +13,9 @@ A clickable prototype of Leander's new website in the **"Open water"** design di
 - Links to systems outside the prototype (TeamUnify, the kit shop, policy documents) show a short "on the live site this goes to…" message.
 - The forms (waiting list, squad trial) look real but **send nothing**.
 - **Race the Standards** is embedded from its own site: https://aretelic.github.io/race-the-standards/
+- The home page hero is a looping placeholder video (muted, pausable, and still when the device asks for reduced motion).
+- The real Leander crest, plus the Swim England Affiliated Club, SwimMark and Clubmark marks in the footer.
+- [`/style-options/`](https://aretelic.github.io/leander-website-prototype/style-options/) compares four corner and button styles. Adding `?style=a`, `b`, `c` or `d` to any page switches the whole prototype on that device.
 - No swimmers under 18 are named anywhere. Historic and record-holding swimmers are shown as `TBC: name withheld` until consent is checked.
 
 ## How to update it
@@ -37,9 +40,10 @@ Some pages and parts of pages are built in code rather than Markdown:
 
 | What | Where |
 |---|---|
-| Home page | `tools/partials.py` → `home_body` |
+| Home page (and its hero video) | `tools/partials.py` → `home_body`, `HERO_VIDEO` |
+| Corner and button options | `assets/site.css` (`data-style` blocks at the top), `tools/partials.py` → `OPTIONS` |
 | Lane-by-lane pathway timeline (Squads › The pathway) | `tools/partials.py` → `ITEMS` |
-| Navigation, footer and each page's top buttons (`HERO_CTA`) | `tools/build.py` |
+| Navigation and mega menu (`NAV`, `MEGA`), footer and each page's top buttons (`HERO_CTA`) | `tools/build.py` |
 | Placeholder photos and their keywords | `tools/photos.py` |
 | Look and feel (colours, type, spacing) | `assets/site.css` (tokens at the top) |
 | Mobile menu, timeline, forms, waterline animation | `assets/site.js` |

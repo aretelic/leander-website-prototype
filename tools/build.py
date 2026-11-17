@@ -23,7 +23,7 @@ VERSION = hashlib.md5((ROOT / "assets/site.css").read_bytes() + (ROOT / "assets/
 RTS_URL = "https://aretelic.github.io/race-the-standards/"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from photos import PHOTOS, pick_photo  # noqa: E402
-from partials import home_body, timeline_html  # noqa: E402
+from partials import home_body, timeline_html, style_options_body  # noqa: E402
 
 # --------------------------------------------------------------------------
 # Site map and navigation
@@ -173,6 +173,20 @@ HERO_CTA = {
 }
 
 PAGES = []  # filled by load_pages()
+
+# Mega menu: an intro line and one call to action per section
+MEGA = {
+    "Learn to Swim": ("Our Academy teaches children aged 5 to 10 to swim properly, in small groups at Ernest Bevin.",
+                      ("Join the Academy waiting list", "/learn/waiting-list", "Places are limited, so the first step is the waiting list.")),
+    "Squads": ("Training groups for young swimmers who want to race, from first galas to national finals.",
+               ("Book a squad trial", "/squads/book-a-trial#trial-form", "Already swimming well? A trial is the place to start.")),
+    "Swim for Life": ("Diamond for teenagers, Masters for adults, and squads open to swimmers with a disability.",
+                      ("Try your first Masters session", "/join-us#adult", "Coached sessions for adults, whatever your reason for swimming.")),
+    "Galas": ("Three Leander galas in 2027, and a plain-English guide to race day.",
+              ("How galas work", "/galas/how-galas-work", "New to galas? Here's what happens on the day.")),
+    "Club": ("A not-for-profit club since 1949, run by volunteers alongside a professional coaching team.",
+             ("Volunteer with us", "/club/volunteer-and-officiate", "Galas can't run without volunteers. Could you help?")),
+}
 
 
 # --------------------------------------------------------------------------
@@ -448,12 +462,14 @@ def render_photo(ctx, desc, cls="photo", eager=False, brief=True):
     ctx.used_photos.add(ph["slug"])
     alt = re.sub(r"\{\{.*?\}\}", "", desc).strip(" ,")
     load = "eager" if eager else "lazy"
-    src = f'{ph["image_url"]}?auto=format&fit=crop&w=1400&q=70'
-    srcset = ", ".join(f'{ph["image_url"]}?auto=format&fit=crop&w={w}&q=70 {w}w' for w in (600, 1000, 1400))
+    prio = ' fetchpriority="high"' if eager else ""
+    sizes = "(max-width: 820px) calc(100vw - 40px), 560px" if cls == "photo" else "(max-width: 820px) calc(100vw - 40px), 380px"
+    src = f'{ph["image_url"]}?auto=format&fit=crop&w=900&q=60'
+    srcset = ", ".join(f'{ph["image_url"]}?auto=format&fit=crop&w={w}&q=60 {w}w' for w in (480, 720, 960, 1200))
     credit = f'<span class="photo-credit">Photo: <a href="{esc(ph["page_url"])}" rel="noopener">{esc(ph["photographer"])} on Unsplash</a></span>'
     b = f'<figcaption class="photo-brief">{inline(ctx, desc)} · {credit}</figcaption>' if brief else ""
-    return (f'<figure class="photo-fig"><div class="{cls}"><img src="{esc(src)}" srcset="{esc(srcset)}" sizes="(max-width: 820px) 100vw, 600px" '
-            f'alt="Placeholder: {esc(alt)}" loading="{load}" decoding="async">'
+    return (f'<figure class="photo-fig"><div class="{cls}"><img src="{esc(src)}" srcset="{esc(srcset)}" sizes="{sizes}" '
+            f'alt="Placeholder: {esc(alt)}" loading="{load}" decoding="async"{prio}>'
             f'<span class="photo-label">Placeholder photo</span></div>{b}</figure>')
 
 
@@ -833,10 +849,15 @@ def header_html(ctx):
     for n, (label, base, kids) in enumerate(NAV):
         active = ' aria-current="true"' if label == sec_label else ""
         if kids:
-            sub = [f'<li>{nav_link(ctx, "Overview" if label != "Galas" else "Galas overview", base, "dd-overview")}</li>'] if base not in [k[1] for k in kids] else []
-            sub += [f"<li>{nav_link(ctx, kl, kt)}</li>" for kl, kt in kids]
+            intro, cta = MEGA[label]
+            links = [f"<li>{nav_link(ctx, kl, kt)}</li>" for kl, kt in kids if kt != base]
+            overview = nav_link(ctx, f"{label} overview →", base, "mega-overview")
+            cta_html = link_html(ctx, esc(cta[0]), cta[1], "btn btn-primary btn-small")
             items.append(f'<li class="nav-item has-dd"><button type="button" class="nav-link" aria-expanded="false" aria-controls="dd{n}"{active}>{esc(label)}{CHEV}</button>'
-                         f'<ul class="dropdown" id="dd{n}">{"".join(sub)}</ul></li>')
+                         f'<div class="mega" id="dd{n}"><div class="wrap mega-inner">'
+                         f'<div class="mega-intro"><p class="mega-title">{esc(label)}</p><p>{esc(intro)}</p>{overview}</div>'
+                         f'<ul class="mega-links">{"".join(links)}</ul>'
+                         f'<div class="mega-cta"><p>{esc(cta[2])}</p>{cta_html}</div></div></div></li>')
         else:
             cur = ' aria-current="page"' if ctx.url == base else active
             items.append(f'<li class="nav-item"><a class="nav-link" href="{esc(ctx.href(base))}"{cur}>{esc(label)}</a></li>')
@@ -872,14 +893,29 @@ def header_html(ctx):
 
 
 def subnav_html(ctx):
+    """Phones only: an 'In this section' picker. Desktop uses the mega menu and breadcrumb."""
     label, base, kids = section_of(ctx.url)
     if not kids:
         return ""
-    links = []
+    entries = []
     if base not in [k[1] for k in kids]:
-        links.append(f"<li>{nav_link(ctx, 'Overview', base)}</li>")
-    links += [f"<li>{nav_link(ctx, kl, kt)}</li>" for kl, kt in kids if not kt.startswith('TU:')]
-    return f'<nav class="subnav" aria-label="{esc(label)} section"><ul><li class="label">{esc(label)}</li>{"".join(links)}</ul></nav>'
+        entries.append(("Overview", base))
+    entries += [(kl, kt) for kl, kt in kids if not kt.startswith("TU:")]
+    links = "".join(f"<li>{nav_link(ctx, l, t)}</li>" for l, t in entries)
+    current = next((l for l, t in entries if t == ctx.url), "Overview")
+    return (f'<nav class="subnav" aria-label="{esc(label)} section"><div class="wrap">'
+            f'<details class="subnav-mobile"><summary><span><span class="k">In {esc(label)}</span>{esc(current)}</span>{CHEV}</summary>'
+            f'<ul>{links}</ul></details></div></nav>')
+
+
+def crumbs_html(ctx, title):
+    label, base, kids = section_of(ctx.url)
+    parts = [f'<li><a href="{esc(ctx.href("/"))}">Home</a></li>']
+    if label and ctx.url != base:
+        parts.append(f'<li><a href="{esc(ctx.href(base))}">{esc(label)}</a></li>')
+    short = next((kl for kl, kt in kids if kt == ctx.url), None) or (label if ctx.url == base else title)
+    parts.append(f'<li aria-current="page">{esc(short)}</li>')
+    return f'<nav class="crumbs" aria-label="Breadcrumb"><ol>{"".join(parts)}</ol></nav>'
 
 
 def footer_html(ctx):
@@ -893,12 +929,16 @@ def footer_html(ctx):
         f'<div><a class="brand" href="{esc(ctx.href("/"))}" style="color:#fff">{crest_svg(44)}<span class="brand-text"><span class="brand-name">Leander</span><span class="brand-sub">Swimming Club, South London</span></span></a>'
         '<p style="margin-top:16px">Home pool: Ernest Bevin College, Beechcroft Road, Tooting SW17 7DF</p>'
         '<p><a class="hl" href="mailto:admin@leanderswim.com">admin@leanderswim.com</a></p>'
-        '<p>Not-for-profit and volunteer-run since 1949. Swim England affiliated, SwimMark and Clubmark accredited.</p></div>'
+        '<p>Not-for-profit and volunteer-run since 1949.</p></div>'
         + col("Swim with us", [("Learn to Swim", "/learn"), ("Squads", "/squads"), ("Swim for Life", "/swim-for-life"), ("Book a squad trial", "/squads/book-a-trial"), ("Join us", "/join-us")])
         + col("Families", [("How galas work", "/galas/how-galas-work"), ("Fees and term dates", "/learn/fees-and-term-dates"), ("Kit by stage", "/learn/kit-by-stage"), ("Glossary", "/club/glossary"), ("Members' login", "TU:TeamUnify – members' login")])
         + col("Club", [("How the club works", "/club/how-the-club-works"), ("Coaches and team", "/club/coaches-and-team"), ("Volunteer and officiate", "/club/volunteer-and-officiate"), ("Where we swim", "/club/where-we-swim"), ("News", "/news"), ("Club shop", "TU:Leander club shop on printmykit")])
         + col("Policies", [("Safeguarding and policies", "/club/safeguarding-and-policies"), ("Privacy Notice", "TU:Privacy Notice"), ("Photography policy", "TU:Photography Policy")])
         + '</div>'
+        f'<div class="footer-badges" aria-label="Accreditation"><span>Leander is a Swim England affiliated club, accredited under SwimMark and Clubmark.</span>'
+        f'<span class="badges"><img src="{ctx.root}assets/swim-england-affiliated.png" width="150" height="65" alt="Swim England Affiliated Club">'
+        f'<img src="{ctx.root}assets/swimmark.png" width="95" height="67" alt="SwimMark Essential Club">'
+        f'<img src="{ctx.root}assets/clubmark.png" width="85" height="68" alt="Clubmark"></span></div>'
         '<div class="footer-welfare"><span><strong>Welfare.</strong> Worried about a swimmer? Talk to our Welfare Officers, Ruth Lock and Linda Kershaw. '
         'We follow Wavepower, Swim England\'s safeguarding policy.</span>'
         f'<span><a class="hl" href="mailto:welfare@leanderswim.com">welfare@leanderswim.com</a> <mark class="tbc">confirm welfare address</mark> · <a href="{esc(ctx.href("/club/safeguarding-and-policies"))}">Safeguarding</a></span></div>'
@@ -917,9 +957,11 @@ def page_shell(ctx, title, desc, body, body_class=""):
 <meta name="robots" content="noindex, nofollow">
 <title>{esc(full_title)} (prototype)</title>
 <meta name="description" content="{esc(desc)}">
+<link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
+<script>try{{var m=location.search.match(/[?&]style=([abcd])/);if(m)localStorage.setItem("lsc-style",m[1]);var v=localStorage.getItem("lsc-style");if(v&&v!=="a")document.documentElement.setAttribute("data-style",v);}}catch(e){{}}</script>
 <link rel="stylesheet" href="{ctx.root}assets/site.css?v={VERSION}">
 <link rel="icon" href="{ctx.root}assets/favicon.png" type="image/png">
 </head>
@@ -988,7 +1030,7 @@ def render_page(meta, md, url):
     photo_html = f'<div class="hero-photo">{render_photo(ctx, photo["text"], eager=True)}</div>' if photo else ""
     hero_cls = "hero" + ("" if photo else " no-photo")
     out = [f'<section class="{hero_cls}" aria-labelledby="page-title"><div class="wrap"><div class="hero-text">'
-           f'<span class="eyebrow">{eyebrow}</span><h1 id="page-title">{inline(ctx, h1 or meta.get("title", ""))}</h1>'
+           f'{crumbs_html(ctx, re.sub(r"<[^>]+>", "", h1 or ""))}<h1 id="page-title">{inline(ctx, h1 or meta.get("title", ""))}</h1>'
            f'{meta_html}{sub_html}{lede_html}{btn_html}</div>{photo_html}</div></section>']
     if extra:
         out.append(f'<section class="section tight" aria-label="At a glance"><div class="wrap"><div class="prose">{"".join(render_block(ctx, b) for b in extra)}</div></div></section>')
@@ -1043,6 +1085,10 @@ def main():
     ctx = Ctx("/")
     body = home_body(ctx, inline, render_photo, link_html, esc)
     (ROOT / "index.html").write_text(page_shell(ctx, "Leander Swimming Club | South London", "Learn to swim, race or swim for life at Leander Swimming Club in South London. Swim your best, among friends.", body, "home"), encoding="utf-8")
+    count += 1
+    ctx = Ctx("/style-options")
+    out_path("/style-options").parent.mkdir(parents=True, exist_ok=True)
+    out_path("/style-options").write_text(page_shell(ctx, "Corner and button options", "Design options for the prototype.", style_options_body(ctx, render_photo)), encoding="utf-8")
     count += 1
     print(f"Built {count} pages.")
     for w in sorted(set(warnings)):

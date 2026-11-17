@@ -112,13 +112,22 @@ def timeline_html(ctx, picked="bronze"):
 # --------------------------------------------------------------------------
 # Home page
 # --------------------------------------------------------------------------
+HERO_VIDEO = {
+    # Free Pexels licence. Swap for the club's own footage (filmed from behind or above, with consent).
+    "src": "https://videos.pexels.com/video-files/15561931/15561931-sd_960_540_30fps.mp4",
+    "src_sd": "https://videos.pexels.com/video-files/15561931/15561931-sd_640_360_30fps.mp4",
+    "poster": "https://images.pexels.com/videos/15561931/alberca-coachwork-loon-swimming-man-swimming-15561931.jpeg?auto=compress&w=1260&h=750&dpr=1",
+    "page": "https://www.pexels.com/video/drone-view-of-a-man-training-at-an-indoor-swimming-pool-15561931/",
+    "by": "Josué Rodríguez",
+}
+
+
 def home_body(ctx, inline, render_photo, link_html, esc_):
     h = ctx.href
 
     def photo(desc):
         return render_photo(ctx, desc, brief=False)
 
-    hero_ph = render_photo(ctx, "swimmers in lanes, squad training, seen from above", eager=True, brief=False)
     # pull the img out of the figure so the hero photo can be full-bleed with the waterline
     ways = [
         ("Ages 5 to 10", "Learn to swim",
@@ -165,7 +174,15 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
 
     return f"""
 <section class="home-hero" aria-labelledby="page-title"><div class="wrap">
-  <div class="home-hero-photo">{hero_ph.replace('<figure class="photo-fig"><div class="photo">', '').replace('</div></figure>', '')}<canvas id="waterline" aria-hidden="true"></canvas></div>
+  <div class="home-hero-photo">
+    <video id="hero-video" muted loop playsinline preload="metadata" poster="{HERO_VIDEO['poster']}" aria-label="Placeholder video: swimmers training in an indoor pool, filmed from above">
+      <source src="{HERO_VIDEO['src_sd']}" type="video/mp4" media="(max-width: 820px)">
+      <source src="{HERO_VIDEO['src']}" type="video/mp4">
+    </video>
+    <canvas id="waterline" aria-hidden="true"></canvas>
+    <span class="photo-label">Placeholder video<span class="credit"> · <a href="{HERO_VIDEO['page']}" rel="noopener">{HERO_VIDEO['by']} on Pexels</a></span></span>
+    <button type="button" class="video-toggle" aria-pressed="false" aria-label="Pause background video"><span aria-hidden="true" class="i-pause">❚❚</span><span aria-hidden="true" class="i-play">▶</span></button>
+  </div>
   <div class="home-hero-card">
     <span class="eyebrow" style="text-transform:none;letter-spacing:0;font-weight:600">Leander Swimming Club · South London · since 1949</span>
     <h1 id="page-title">Swim your best, among friends</h1>
@@ -239,3 +256,41 @@ def home_body(ctx, inline, render_photo, link_html, esc_):
   <div class="join-routes">{joins_html}</div>
 </div></div></section>
 """
+
+
+# --------------------------------------------------------------------------
+# Corner and button options (for choosing a direction; not linked from the nav)
+# --------------------------------------------------------------------------
+OPTIONS = [
+    ("a", "A · Open water (current)", "Cards 20px, large panels 28px, pill buttons"),
+    ("b", "B · Softer", "Cards 14px, large panels 20px, pill buttons"),
+    ("c", "C · Crisp", "Cards 10px, large panels 14px, rounded-rectangle buttons (10px)"),
+    ("d", "D · Lane line", "Cards and buttons 6px, tags squared off too"),
+]
+
+
+def style_options_body(ctx, render_photo):
+    blocks = []
+    for key, name, meta in OPTIONS:
+        ctx.used_photos = set()
+        ph = render_photo(ctx, "squad training lane swimmer above butterfly", brief=False)
+        blocks.append(f"""
+<div class="opt" data-style="{key}">
+  <div class="opt-head"><h2>{name}</h2><span class="meta">{meta}</span></div>
+  <div class="mini-hero"><div style="display:flex;flex-direction:column;gap:12px">
+    <span class="eyebrow">Squads</span><h3>Book a squad trial</h3>
+    <div class="btn-row"><a class="btn btn-primary" href="#">Book a squad trial</a><a class="btn btn-secondary" href="#">See the pathway</a></div></div>{ph}</div>
+  <div class="mini-row">
+    <article class="card"><div class="card-body"><span class="card-tag">Ages 5 to 10</span><h3>Learn to swim</h3><p>Small groups at Ernest Bevin, taught the way competitive swimmers are taught.</p><p class="links-line"><a href="#">About the Academy</a></p></div></article>
+    <div style="display:flex;flex-direction:column;gap:14px"><div class="stat"><div class="n">55</div><div class="l">championship qualifications</div></div>
+    <div class="field"><label for="opt-{key}">Swimmer's first name</label><input id="opt-{key}" type="text"></div>
+    <a class="btn btn-navy" href="#">Request a trial</a></div>
+  </div>
+  <p style="margin:0"><a class="text-cta" href="{ctx.href('/')}?style={key}">Try option {key.upper()} across the whole site →</a></p>
+</div>""")
+    return f"""
+<section class="hero no-photo"><div class="wrap"><div class="hero-text">
+  <span class="eyebrow">Design options</span><h1 id="page-title">Corners and buttons</h1>
+  <p class="lede">Four ways to round the corners and shape the buttons, from the current soft "Open water" look to something crisper. Each link below switches the whole prototype to that option on your device, so you can click around with it. <a href="{ctx.href('/')}?style=a">Back to A</a>.</p>
+</div></div></section>
+<section class="section"><div class="wrap"><div class="opt-grid">{''.join(blocks)}</div></div></section>"""
