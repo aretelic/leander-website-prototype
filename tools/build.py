@@ -864,7 +864,7 @@ def nav_link(ctx, label, target, cls=""):
 
 def header_html(ctx):
     global CREST_SRC
-    CREST_SRC = ctx.root + "assets/leander-crest.png"
+    CREST_SRC = ctx.root + "assets/leander-crest-112.png"
     sec_label, _, _ = section_of(ctx.url)
     items = []
     for n, (label, base, kids) in enumerate(NAV):
@@ -941,7 +941,7 @@ def crumbs_html(ctx, title):
 
 def footer_html(ctx):
     global CREST_SRC
-    CREST_SRC = ctx.root + "assets/leander-crest.png"
+    CREST_SRC = ctx.root + "assets/leander-crest-112.png"
     def col(title, links):
         lis = "".join(f"<li>{nav_link(ctx, l, t)}</li>" for l, t in links)
         return f'<div><h2>{esc(title)}</h2><ul>{lis}</ul></div>'
@@ -997,9 +997,7 @@ def page_shell(ctx, title, desc, body, body_class=""):
 <meta name="theme-color" content="#06303F">
 <link rel="apple-touch-icon" href="{ctx.root}assets/leander-crest.png">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
+<link rel="preload" href="{ctx.root}assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{{var m=location.search.match(/[?&]style=([abcd])/);if(m)localStorage.setItem("lsc-style",m[1]);var v=localStorage.getItem("lsc-style");if(v&&v!=="d")document.documentElement.setAttribute("data-style",v);}}catch(e){{}}</script>
 <link rel="stylesheet" href="{ctx.root}assets/site.css?v={VERSION}">
 <link rel="icon" href="{ctx.root}assets/favicon.png" type="image/png">
